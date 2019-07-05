@@ -1,6 +1,5 @@
-# splashmerkle - SplashLedger:
-[![GODOC](https://godoc.org/github.com/CryptoKass/splashmerkle?status.svg)](https://godoc.org/github.com/CryptoKass/splashmerkle)
-*This project is part of the \*offical suite for the Splash Distributed Ledger. This repo is maintained by the Splash Foundation [http://SplashLedger.com](SplashLedger.com)*
+# splashmerkle - WIP:
+[![GODOC](https://godoc.org/github.com/CryptoKass/splashmerkle?status.svg)](https://godoc.org/github.com/CryptoKass/splashmerkle) 
 
 
 # Getting stated:
@@ -30,7 +29,6 @@ Visit [GoDoc](https://godoc.org/github.com/CryptoKass/splashmerkle)
 **If I got something wrong (which I almost certainly have) please let me know:**
 - Pull requests welcomed!
 - Feedback: cryptokass@gmail.com
-
 
 ---
 

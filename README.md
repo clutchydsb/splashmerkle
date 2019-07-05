@@ -10,14 +10,14 @@ go get github.com/CryptoKass/splashmerkle
 If you do not have the go command on your system, you need to [Install Go](http://golang.org/doc/install) first
 
 <br></br>
-*quick start:*
+## quick start:
 ```
 //make a tree
 tree := splashmerkle.Tree{}
 tree.ConstructTree{ inputs }
 
 //get the merkle root
-merkleroot := tree.Root.leaf.Bytes()
+merkleroot := tree.Root.Bytes()
 ```
 
 <br></br>

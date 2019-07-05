@@ -1,7 +1,6 @@
 package splashmerkle
 
 import (
-	"crypto/sha256"
 	"encoding/hex"
 	"math"
 	"strconv"
@@ -54,10 +53,10 @@ func (tree *Tree) generateLayerFrom(inNodes []Node) []Node {
 			right := left.GetSibling()
 
 			if right == nil {
-				buf := sha256.Sum256(left.H)
+				buf := utils.Hash(left.H)
 				hash = buf[:]
 			} else {
-				buf := sha256.Sum256(append(left.H, right.H...))
+				buf := utils.Hash(append(left.H, right.H...))
 				hash = buf[:]
 			}
 

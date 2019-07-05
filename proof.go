@@ -1,7 +1,6 @@
 package splashmerkle
 
 import (
-	"crypto/sha256"
 	"encoding/hex"
 	"errors"
 	"fmt"
@@ -26,24 +25,24 @@ type ProofHelper struct {
 func (proof *Proof) Verify(merklerootHash []byte) bool {
 	//Calculate next hash
 	hash := proof.Target
-	var buf [32]byte
+	var buf []byte
 
 	//calculate first hash
 	fmt.Println("Testing:", hex.EncodeToString(hash), hex.EncodeToString(proof.helpers[0].H))
 	if proof.isTargetLeft {
-		buf := sha256.Sum256(append(hash, proof.helpers[0].H...))
+		buf := utils.Hash(append(hash, proof.helpers[0].H...))
 		hash = buf[:32]
 	} else {
-		buf := sha256.Sum256(append(proof.helpers[0].H, hash...))
+		buf := utils.Hash(append(proof.helpers[0].H, hash...))
 		hash = buf[:32]
 	}
 
 	for i := 1; i < len(proof.helpers); i++ {
 		fmt.Println("Testing:", hex.EncodeToString(hash), hex.EncodeToString(proof.helpers[i].H))
 		if proof.helpers[i].isLeaf {
-			buf = sha256.Sum256(append(proof.helpers[i].H, hash...))
+			buf = utils.Hash(append(proof.helpers[i].H, hash...))
 		} else {
-			buf = sha256.Sum256(append(hash, proof.helpers[i].H...))
+			buf = utils.Hash(append(hash, proof.helpers[i].H...))
 		}
 		hash = buf[:]
 	}
@@ -62,7 +61,7 @@ func (tree *Tree) GenerateProofFor(target []byte) (proof Proof, err error) {
 	// Holder for left Nodes
 	var leftNode *Node
 	var rightNode *Node
-	var buf [32]byte
+	var buf []byte
 
 	if !tree.IncludesInput(target) {
 		err = errors.New("target not contained withing tree inputs")
@@ -94,9 +93,9 @@ func (tree *Tree) GenerateProofFor(target []byte) (proof Proof, err error) {
 		}
 
 		if rightNode != nil {
-			buf = sha256.Sum256(append(leftNode.H, rightNode.H...))
+			buf = utils.Hash(append(leftNode.H, rightNode.H...))
 		} else {
-			buf = sha256.Sum256(leftNode.H)
+			buf = utils.Hash(leftNode.H)
 		}
 
 		index = tree.GetIndex(buf[:])

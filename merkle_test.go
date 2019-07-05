@@ -1,7 +1,6 @@
 package splashmerkle
 
 import (
-	"crypto/sha256"
 	"encoding/hex"
 	"math/rand"
 	"testing"
@@ -17,7 +16,7 @@ func TestMerkleRoot(t *testing.T) {
 		if _, err := rand.Read(data); err != nil {
 			t.Error("failed to create random data set")
 		}
-		h := sha256.Sum256(data)
+		h := utils.Hash(data)
 		testSet[i] = h[:]
 	}
 
@@ -40,7 +39,7 @@ func TestMerkleRoot(t *testing.T) {
 
 	leafA := tree.Nodes[0]
 	leafB := tree.Nodes[1]
-	hash := sha256.Sum256(append(leafA.H, leafB.H...))
+	hash := utils.Hash(append(leafA.H, leafB.H...))
 
 	if !utils.CheckByteEq(hash[:], tree.Nodes[randSize].H) {
 		for index := 0; index < len(tree.Nodes); index++ {

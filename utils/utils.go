@@ -1,5 +1,9 @@
 package utils
 
+import (
+	"crypto/sha256"
+)
+
 func CheckByteEq(a, b []byte) bool {
 
 	// If one is nil, the other must also be nil.
@@ -18,4 +22,10 @@ func CheckByteEq(a, b []byte) bool {
 	}
 
 	return true
+}
+
+func Hash(b []byte) []byte {
+	sha := sha256.New()
+	sha.Write(b)
+	return sha.Sum(nil)
 }

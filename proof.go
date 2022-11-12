@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/CryptoKass/splashmerkle/utils"
+	"Nezha/evm/splashmerkle/utils"
 )
 
 const MAXDEPTH = 4

@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/CryptoKass/splashmerkle/utils"
+	"Nezha/evm/splashmerkle/utils"
 )
 
 func TestMerkleRoot(t *testing.T) {
